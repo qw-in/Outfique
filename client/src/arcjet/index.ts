@@ -1,4 +1,4 @@
-import arcjet, { detectBot, fixedWindow, protectSignup, shield, validateEmail } from "@arcjet/next";
+import arcjet, { detectBot, fixedWindow, protectSignup, sensitiveInfo, shield, validateEmail } from "@arcjet/next";
 
 export const protectSignupRules = arcjet({
     key: process.env.ARCJET_KEY!, 
@@ -49,6 +49,28 @@ export const protectSignupRules = arcjet({
       }),
       shield({
         mode: "LIVE",
+      }),
+    ],
+  });
+
+  export const createCouponRules = arcjet({
+    key: process.env.ARCJET_KEY!,
+    rules: [
+      detectBot({
+        mode: "LIVE",
+        allow: [],
+      }),
+      fixedWindow({
+        mode: "LIVE",
+        window: "300s",
+        max: 5,
+      }),
+      shield({
+        mode: "LIVE",
+      }),
+      sensitiveInfo({
+        mode: "LIVE",
+        deny: ["EMAIL", "CREDIT_CARD_NUMBER", "PHONE_NUMBER"],
       }),
     ],
   });
