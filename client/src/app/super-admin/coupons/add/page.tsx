@@ -69,6 +69,7 @@ const handleCouponSubmit = async (event: React.FormEvent) => {
   const result = await createCoupon(couponData);
   if (result) {
     router.push("/super-admin/coupons/list");
+    toast.success("Coupon created successfully");
   }
 };
 

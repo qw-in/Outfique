@@ -2,7 +2,7 @@
 import { cn } from '@/lib/utils';
 import React, { useState } from 'react'
 import { Button } from '../ui/button';
-import { ChevronLeft, ChevronRight, FileText, ListOrdered, LogOut, Package, Printer, SendToBack, Settings } from 'lucide-react';
+import { ChevronLeft, ChevronRight, FileText, ListOrdered, LogOut, Package, Printer, SendToBack, Settings, UserCog } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
 import { useAuthStore } from '@/store/useAuthStore';
 import { motion } from 'framer-motion';
@@ -97,8 +97,8 @@ function SuperAdminSidebar({ isOpen, toggle }: SidebarProps) {
                         </h1>
                     </motion.div>
                 ) : (
-                    <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center mx-auto">
-                        <span className="text-white font-bold text-lg">A</span>
+                    <div className="w-8 h-8 flex items-center justify-center mx-auto">
+                        <UserCog className="h-5 w-5 text-slate-600" />
                     </div>
                 )}
                 <Button

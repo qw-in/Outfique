@@ -31,15 +31,33 @@ export interface Coupon {
     fetchCoupons: async () => {
         set({ isLoading: true, error: null });
         try {
+            console.log("Making API call to fetch coupons...");
             const response = await axios.get(
               `${API_ROUTES.COUPON}/fetch-all-coupons`,
               { withCredentials: true }
             );
-            set({ couponList: response.data.couponList, isLoading: false });
+            console.log("API Response:", response.data);
+            
+            if (!response.data || !Array.isArray(response.data.coupons)) {
+              console.error("Invalid response format:", response.data);
+              set({ isLoading: false, error: "Invalid response format" });
+              return;
+            }
+
+            console.log("Setting coupons in store:", response.data.coupons);
+            set({ 
+              couponList: response.data.coupons, 
+              isLoading: false,
+              error: null 
+            });
           } catch (e) {
-            set({ isLoading: false, error: "Failed to fetch coupons" });
+            console.error("Error fetching coupons:", e);
+            set({ 
+              isLoading: false, 
+              error: "Failed to fetch coupons",
+              couponList: [] 
+            });
           }
-        
     },
     createCoupon: async (coupon) => {
         set({ isLoading: true, error: null });

@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 import authRoutes from "./routes/authRoute";
 import productRoutes from "./routes/productRoute";
 import couponRoutes from "./routes/couponRoute";
-
+import settingsRoutes from "./routes/settingsRoute";
 
 
 //loadin env variables
@@ -32,7 +32,7 @@ export const prisma = new PrismaClient();
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/coupons', couponRoutes);
-
+app.use('/api/settings', settingsRoutes);
 app.get('/', (req, res) => {
     res.send("Hello from the backend");
 });

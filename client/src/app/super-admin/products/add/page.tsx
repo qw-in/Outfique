@@ -94,6 +94,23 @@ function SuperAdminProductPage() {
     }
   }, [getCurrentProductId, isEditMode, getProductById]);
 
+  useEffect(() => {
+    if(getCurrentProductId){
+      setFormState({
+        name: "",
+        brand: "",
+        description: "",
+        category: "",
+        gender: "",
+        price: "",
+        stock: "",
+      });
+      setSelectSizes([]);
+      setSelectColors([]);
+      
+    }
+  },[getCurrentProductId])
+
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
