@@ -33,6 +33,11 @@ export const protectCouponFormAction = async () => {
         status: 400,
       };
     }
+    return {
+      error: "Forbidden",
+      success: false,
+      status: 403,
+    };
   }
 
   return {

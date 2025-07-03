@@ -30,6 +30,7 @@ export const protectSignupAction = async (email:string) => {
         else if(decision.reason.isRateLimit()){
             return { sucess:false,status: 403, error: "Too many requests! Try again later." }
         }
+        return { sucess: false, status: 403, error: "Forbidden." }
     }
     return { sucess:true }
 }
@@ -58,6 +59,7 @@ export const protectLoginAction = async (email:string) => {
         else if(decision.reason.isRateLimit()){
             return { sucess:false,status: 403, error: "Too many requests! Try again later." }
         }
+        return { sucess: false, status: 403, error: "Forbidden." }
     }
     return { sucess:true }
 }
